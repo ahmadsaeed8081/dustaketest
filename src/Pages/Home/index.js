@@ -138,7 +138,7 @@ const networkId=97;
     {
       img: "../images/award.png",
       title: "Available Balance",
-      price: (Number(totalEarning))/(10**18),
+      price: ((Number(totalEarning))/(10**18)).toFixed(2),
     },
     {
       img: "../images/medal.png",
