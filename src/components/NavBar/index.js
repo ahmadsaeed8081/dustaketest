@@ -31,6 +31,11 @@ const NavBar = () => {
       slug: "/dashboard/verification",
       img: "/images/CardIcon.svg",
     },
+    {
+      lbl: "Profile",
+      slug: "/dashboard/profile",
+      img: "/images/CardIcon.svg",
+    },
   ];
   return (
     <div className="nav-comp flex">

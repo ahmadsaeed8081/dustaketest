@@ -60,6 +60,8 @@ const Routing = () => {
   const [totalInvestment, set_totalInvestment] = useState(0);
   const [totalEarning, set_totalEarning] = useState(0);
   const [referralLevel_count, set_referralLevel_count] = useState([]);
+  const [referralLevel_stake, set_referralLevel_stake] = useState([]);
+
   const [referralLevel_Earning, set_referralLevel_Earning] = useState([]);
   const [regAddress, set_regAddress] = useState("");
   const [ref_add, set_ref] = useState("0x0000000000000000000000000000000000000000");
@@ -135,7 +137,9 @@ useEffect(()=>{
      }
     
     let history = await contract.methods.get_history(regAddress).call({ from: regAddress });
-    let referralLevel_count = await contract.methods.Level_count(regAddress).call();       
+    let referralLevel_count = await contract.methods.Level_count(regAddress).call();     
+    let referralLevel_stake = await contract.methods.Level_stake(regAddress).call();       
+  
     try{
        referralLevel_earning = await contract.methods.Level_earning(regAddress).call();       
 
@@ -158,6 +162,8 @@ useEffect(()=>{
     set_totalInvestment(TotalInvestment)
     set_totalEarning(totalEarning)
     set_referralLevel_count(referralLevel_count)
+    set_referralLevel_stake(referralLevel_stake)
+
     set_referralLevel_Earning(referralLevel_earning)
     set_min_stake(min_stakeAmount)
     set_minWithdraw(min_Withlimit)
@@ -272,7 +278,7 @@ useEffect(()=>{
             path="reward"
             element={
               <ProtectedRoute>
-                <Reward referralLevel_count={referralLevel_count} referralLevel_Earning={referralLevel_Earning}/>
+                <Reward referralLevel_stake={referralLevel_stake}referralLevel_count={referralLevel_count} referralLevel_Earning={referralLevel_Earning}/>
               </ProtectedRoute>
             }
           />

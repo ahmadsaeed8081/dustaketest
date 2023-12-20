@@ -1,4 +1,4 @@
-export const cont_address="0x2C47b7f7715755F694Ef224A7390794684996cAC";
+export const cont_address="0x14D29D3Bc58a0A5c9CB8290b6aceD0D032680347";
 export const token_Address="0xd962cE68512C52F71Ca3033D43E8598049C2568F";
 
 export const cont_abi=[
@@ -518,6 +518,25 @@ export const cont_abi=[
 			{
 				"internalType": "uint256[]",
 				"name": "arr1",
+				"type": "uint256[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "inv",
+				"type": "address"
+			}
+		],
+		"name": "Level_stake",
+		"outputs": [
+			{
+				"internalType": "uint256[]",
+				"name": "_arr",
 				"type": "uint256[]"
 			}
 		],

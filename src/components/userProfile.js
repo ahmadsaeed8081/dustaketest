@@ -1,16 +1,25 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import LogoutIcon from "../../src/assets/Icons/LogoutIcon";
 
 const UserProfile = () => {
+
+
+  function logout()
+  {
+    window.location.reload();
+  }
+
   return (
-    <Link to={"/dashboard/profile"}>
-      {/* <img
-        src="/images/user-img.png"
-        className="h-12 w-12 rounded-full"
-        alt="img"
-      /> */}
-      <h1 >Profile</h1>
-    </Link>
+    <span  onClick={logout}> Logout</span>
+
+    // <Link to={window.location.reload}>
+    //   {/* <img
+    //     src="/images/user-img.png"
+    //     className="h-12 w-12 rounded-full"
+    //     alt="img"
+    //   /> */}
+    // </Link>
   );
 };
 

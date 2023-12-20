@@ -18,6 +18,8 @@ const Sidebar = () => {
     { lbl: "Transaction History", slug: "/dashboard/history" },
     { lbl: "Level Rewards", slug: "/dashboard/reward" },
     { lbl: "KYC Verification", slug: "/dashboard/verification" },
+    { lbl: "Profile", slug: "/dashboard/profile" },
+
   ];
 
   return (
