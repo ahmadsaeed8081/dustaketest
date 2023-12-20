@@ -168,7 +168,7 @@ const Reward = ({referralLevel_count,referralLevel_Earning,referralLevel_stake})
                     </div>
                     <div className="flex flex-col">
                       <p className="box-head ">{item.stake}</p>
-                      <p className="box-desc"> {item.Member}</p>
+                      <p className="box-desc"> {item.total_stake}</p>
                     </div>
                   </div>
                   <div className="flex flex-col items-center">
