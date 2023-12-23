@@ -74,7 +74,7 @@ let count=0;
       address: cont_address,
     abi: cont_abi,
     functionName: 'Stake',
-    args: [stakeAmount*10**18,selectedAPR.value,id,props.ref_add],
+    args: [Convert_To_wei(stakeAmount),selectedAPR.value,id,props.ref_add],
     onSuccess(data) {
       props.test();
       console.log('Success', data)
@@ -87,7 +87,7 @@ let count=0;
     address: token_Address,
     abi: token_abi,
       functionName: 'approve',
-      args: [cont_address,stakeAmount*10**18],
+      args: [cont_address,Convert_To_wei(stakeAmount)],
   })
 
 
@@ -205,14 +205,25 @@ useEffect(()=>{
   //   const t=moment("20000620", "YYYYMMDD").fromNow();
   //   console.log("its tie "+t);
   // }
+  function Convert_To_wei( val){
+    if(val==null || val==undefined || val=="")
+    return 
+
+    const web3= new Web3(new Web3.providers.HttpProvider("https://bsc.publicnode.com	"));
+    val= web3.utils.toWei(val.toString(),"ether");
+    return val;
+  
+  }
+
   function Convert_To_eth( val){
+    if(val==null || val==undefined || val=="")
+    return 
+
     const web3= new Web3(new Web3.providers.HttpProvider("https://bsc.publicnode.com	"));
     val= web3.utils.fromWei(val.toString(),"ether");
     return val;
   
   }
-
-
 
 
     function test1(){
@@ -432,7 +443,7 @@ useEffect(()=>{
                               placeholder="Plano"
                             >
                                  {selectedAmount
-                                      ? selectedAmount[0]/10**18
+                                      ? Convert_To_eth( selectedAmount[0])
                                       : "0"}                            
                                       </span>
                           </div>

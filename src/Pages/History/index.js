@@ -6,9 +6,9 @@ const History = ({history}) => {
 
   const count = (_deadline) => {
     console.log("here is deadine "+_deadline)
-    var now = new Date().getTime();
-    _deadline = Number(_deadline) * 1000;
-    var now = new Date().getDate(_deadline)+"-"+new Date().getMonth(_deadline)+"-"+new Date().getFullYear(_deadline);
+    // var now = new Date().getTime();
+    _deadline =(Number(_deadline) * 1000);
+    var now = new Date().getDate(_deadline)+"-"+(new Date().getMonth(_deadline)+1)+"-"+new Date().getFullYear(_deadline);
 return now
     
   };
@@ -48,7 +48,7 @@ return now
                         <td className="fd border">{index+1}</td>
                         <td className="fd border">{item[0]==1?("Stake"):(item[0]==2?("UnStake"):(item[0]==3?("Withdraw"):((item[0]==4?("Level Up"):(null)) ) ) )}</td>
                         
-                        <td className="fd border">{item[1]/10**18} DU</td>
+                        <td className="fd border">{Number(item[1]/10**18).toFixed()} DU</td>
                         <td className="fd border">{count(item[2])}</td>
                       </tr>
                     ))}
