@@ -11,7 +11,7 @@ const UserProfile = () => {
   }
 
   return (
-    <span  onClick={logout}> Logout</span>
+    <span  className="btn button" onClick={logout}> Logout</span>
 
     // <Link to={window.location.reload}>
     //   {/* <img
