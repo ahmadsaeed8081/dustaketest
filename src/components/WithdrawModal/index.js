@@ -24,7 +24,7 @@ const WithdrawModal = ({totalEarning,directs,team,set_regAddress,regAddress,tota
   
   })
   
-  const networkId=97;
+  const networkId=56;
   
   
    const waitForTransaction4 = useWaitForTransaction({

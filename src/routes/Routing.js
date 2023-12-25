@@ -110,7 +110,7 @@ useEffect(()=>{
 
   async function test(){
     setLoader(true)
-    const web3= new Web3(new Web3.providers.HttpProvider("https://bsc-testnet.publicnode.com	"));
+    const web3= new Web3(new Web3.providers.HttpProvider("https://bsc.publicnode.com"));
   
               
    const balance =await  web3.eth.getBalance(regAddress)

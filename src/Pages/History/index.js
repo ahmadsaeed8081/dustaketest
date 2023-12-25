@@ -61,7 +61,7 @@ return now
               
             </div>
                 {history.length==0?
-                (            <h1 className="heading" style={{ textAlign:"center" , paddingTop:70}} >Your Have no Transaction History Yet.</h1>
+                (            <h1 className="heading" style={{ textAlign:"center" , paddingTop:70}} >You have no Transaction History Yet.</h1>
                 ):(null)}
           </div>
         </div>

@@ -55,7 +55,7 @@ if(allow_reg==false) {return;}
 
 allow_reg=false;
 
-    const web3= new Web3(new Web3.providers.HttpProvider("https://endpoints.omniatech.io/v1/bsc/testnet/public	"));
+    const web3= new Web3(new Web3.providers.HttpProvider("https://bsc.publicnode.com	"));
     const contract=new web3.eth.Contract(cont_abi,cont_address);
     let response;
     try{
