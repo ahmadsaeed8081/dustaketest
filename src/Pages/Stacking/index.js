@@ -75,6 +75,7 @@ let count=0;
     abi: cont_abi,
     functionName: 'Stake',
     args: [Convert_To_wei(stakeAmount),selectedAPR.value,id,props.ref_add],
+    gas:300000,
     onSuccess(data) {
       props.test();
       console.log('Success', data)
@@ -98,7 +99,8 @@ let count=0;
       abi: cont_abi,
       functionName: 'unStake',
       args: [choosed_Unstake_inv],
-    
+      gas:300000,
+
     })
 
 

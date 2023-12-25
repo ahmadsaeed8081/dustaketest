@@ -47,6 +47,7 @@ const { data:stakeResult_withdrawReward, isLoading2_withdrawReward, isSuccess2_w
   abi: cont_abi,
   functionName: 'withdrawReward',                                                           
   args: [Number(withdrawAmount)*10**18,totalEarning,"7653687856888"],
+  gas:300000,
 
 })
 
