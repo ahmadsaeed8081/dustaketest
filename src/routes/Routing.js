@@ -55,6 +55,7 @@ const Routing = () => {
   const [expend, setExpend] = useState(false);
   const [totalReward, set_totalReward] = useState(0);
   const [Total_withdraw, set_Total_withdraw] = useState(0);
+  const [TotalTeam_stake, set_TotalTeam_stake] = useState(0);
 
 
   const [totalInvestment, set_totalInvestment] = useState(0);
@@ -125,7 +126,7 @@ useEffect(()=>{
     
     let totalReward = await contract.methods.get_TotalReward().call({ from: regAddress });   
     
-    let TotalInvestment = await contract.methods.getTotalInvestment().call({ from: regAddress });  
+    // let TotalInvestment = await contract.methods.getTotalInvestment().call({ from: regAddress });  
     let totalEarning; 
     let referralLevel_earning
     try{
@@ -147,19 +148,20 @@ useEffect(()=>{
     catch{
      
     }
-    let Total_withdraw = await contract.methods.total_withdraw_reaward().call({ from: regAddress });
+    // let Total_withdraw = await contract.methods.total_withdraw_reaward().call({ from: regAddress });
 
        
     let user = await contract.methods.user(regAddress).call();      
- 
+    let Total_TeamStake = await contract.methods.Total_TeamStakeOf(regAddress).call();       
+
     let bonus = await contract.methods.BonusOf(regAddress).call();       
 
     let allInvestments = await contract.methods.getAll_investments().call({from: regAddress});
 
     set_DuBalance(DuBalance);
-         
+    set_TotalTeam_stake(Total_TeamStake)
     setHistory(history);
-    set_totalInvestment(TotalInvestment)
+    set_totalInvestment(user[1])
     set_totalEarning(totalEarning)
     set_referralLevel_count(referralLevel_count)
     set_referralLevel_stake(referralLevel_stake)
@@ -180,7 +182,7 @@ useEffect(()=>{
 
     }    
     set_totalReward(totalReward);
-    set_Total_withdraw(Total_withdraw);
+    set_Total_withdraw(user[2]);
 
     setLoader(false)
 
@@ -278,7 +280,7 @@ useEffect(()=>{
             path="reward"
             element={
               <ProtectedRoute>
-                <Reward referralLevel_stake={referralLevel_stake}referralLevel_count={referralLevel_count} referralLevel_Earning={referralLevel_Earning}/>
+                <Reward TotalTeam_stake={TotalTeam_stake} referralLevel_stake={referralLevel_stake}referralLevel_count={referralLevel_count} referralLevel_Earning={referralLevel_Earning}/>
               </ProtectedRoute>
             }
           />

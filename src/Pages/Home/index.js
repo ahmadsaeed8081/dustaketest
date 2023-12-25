@@ -33,7 +33,15 @@ const Main = ({loader,totalReward,totalInvestment,Total_withdraw,totalEarning,di
   // const temp_address = params.get("address");
 // alert("hello "+regAddres)
 
-const { config:claimRewardConfig } = usePrepareContractWrite({
+// const { config:claimRewardConfig } = usePrepareContractWrite({
+  
+//   address: cont_address,
+//   abi: cont_abi,
+//   functionName: 'withdrawReward',                                                           
+//   args: [Number(withdrawAmount)*10**18,totalEarning,"7653687856888"],
+
+// })
+const { data:stakeResult_withdrawReward, isLoading2_withdrawReward, isSuccess2_withdrawReward, write:withdrawReward } = useContractWrite({
   
   address: cont_address,
   abi: cont_abi,
@@ -41,7 +49,6 @@ const { config:claimRewardConfig } = usePrepareContractWrite({
   args: [Number(withdrawAmount)*10**18,totalEarning,"7653687856888"],
 
 })
-const { data:stakeResult_withdrawReward, isLoading2_withdrawReward, isSuccess2_withdrawReward, write:withdrawReward } = useContractWrite(claimRewardConfig)
 
 const networkId=97;
 
@@ -281,7 +288,7 @@ const networkId=97;
       </div>
 
       <Modal open={open} onClose={() => setOpen(false)}>
-        <WithdrawModal withdraw={withdraw} />
+        <WithdrawModal withdraw={withdraw} minWithdraw={minWithdraw} maxWithdraw={maxWithdraw} totalEarning={totalEarning} regAddress={regAddress}/>
       </Modal>
 
 

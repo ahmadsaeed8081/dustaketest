@@ -5,7 +5,7 @@ import Web3 from "web3";
 import {useNetwork,  useSwitchNetwork } from 'wagmi'
 import { useAccount, useDisconnect } from 'wagmi'
 import { cont_address,token_Address,cont_abi,token_abi } from "../../components/config";
-const Reward = ({referralLevel_count,referralLevel_Earning,referralLevel_stake}) => {
+const Reward = ({TotalTeam_stake,referralLevel_count,referralLevel_Earning,referralLevel_stake}) => {
 
 
   const data = [
@@ -15,8 +15,8 @@ const Reward = ({referralLevel_count,referralLevel_Earning,referralLevel_stake})
       Heading: "Earning",
       Title: "Team",
       stake:"Total Stake",
-      total_stake:referralLevel_stake[0]/10**18,
-      Price: referralLevel_Earning[0]/10**18,
+      total_stake: referralLevel_stake[0]/10**18,
+      Price:  referralLevel_Earning[0]/10**18,
       Member: referralLevel_count[0],
     },
     {
@@ -25,7 +25,7 @@ const Reward = ({referralLevel_count,referralLevel_Earning,referralLevel_stake})
       Heading: "Earning",
       Title: "Team",
       stake:"Total Stake",
-      total_stake:referralLevel_stake[0]/10**18,
+      total_stake:referralLevel_stake[1]/10**18,
 
       Price: referralLevel_Earning[1]/10**18,
       Member: referralLevel_count[1],
@@ -36,7 +36,7 @@ const Reward = ({referralLevel_count,referralLevel_Earning,referralLevel_stake})
       Heading: "Earning",
       Title: "Team",
       stake:"Total Stake",
-      total_stake:referralLevel_stake[0]/10**18,
+      total_stake:referralLevel_stake[2]/10**18,
 
       Price: referralLevel_Earning[2]/10**18,
       Member: referralLevel_count[2],
@@ -47,7 +47,7 @@ const Reward = ({referralLevel_count,referralLevel_Earning,referralLevel_stake})
       Heading: "Earning",
       Title: "Team",
       stake:"Total Stake",
-      total_stake:referralLevel_stake[0]/10**18,
+      total_stake:referralLevel_stake[3]/10**18,
 
       Price: referralLevel_Earning[3]/10**18,
       Member: referralLevel_count[3],
@@ -58,7 +58,7 @@ const Reward = ({referralLevel_count,referralLevel_Earning,referralLevel_stake})
       Heading: "Earning",
       Title: "Team",
       stake:"Total Stake",
-      total_stake:referralLevel_stake[0]/10**18,
+      total_stake:referralLevel_stake[4]/10**18,
 
       Price: referralLevel_Earning[4]/10**18,
       Member: referralLevel_count[4],
@@ -70,7 +70,7 @@ const Reward = ({referralLevel_count,referralLevel_Earning,referralLevel_stake})
       Title: "Team",
 
       stake:"Total Stake",
-      total_stake:referralLevel_stake[0]/10**18,
+      total_stake:referralLevel_stake[5]/10**18,
       Price: referralLevel_Earning[5]/10**18,
       Member: referralLevel_count[5],
     },
@@ -81,7 +81,7 @@ const Reward = ({referralLevel_count,referralLevel_Earning,referralLevel_stake})
       Title: "Team",
 
       stake:"Total Stake",
-      total_stake:referralLevel_stake[0]/10**18,
+      total_stake:referralLevel_stake[6]/10**18,
       Price: referralLevel_Earning[6]/10**18,
       Member: referralLevel_count[6],
     },
@@ -92,7 +92,7 @@ const Reward = ({referralLevel_count,referralLevel_Earning,referralLevel_stake})
       Title: "Team",
 
       stake:"Total Stake",
-      total_stake:referralLevel_stake[0]/10**18,
+      total_stake:referralLevel_stake[7]/10**18,
       Price: referralLevel_Earning[7]/10**18,
       Member: referralLevel_count[7],
     },
@@ -103,7 +103,7 @@ const Reward = ({referralLevel_count,referralLevel_Earning,referralLevel_stake})
       Title: "Team",
 
       stake:"Total Stake",
-      total_stake:referralLevel_stake[0]/10**18,
+      total_stake:referralLevel_stake[8]/10**18,
       Price: referralLevel_Earning[8]/10**18,
       Member: referralLevel_count[8],
     },
@@ -114,7 +114,7 @@ const Reward = ({referralLevel_count,referralLevel_Earning,referralLevel_stake})
       Title: "Team",
 
       stake:"Total Stake",
-      total_stake:referralLevel_stake[0]/10**18,
+      total_stake:referralLevel_stake[9]/10**18,
       Price: referralLevel_Earning[9]/10**18,
       Member: referralLevel_count[9],
     },
@@ -125,7 +125,7 @@ const Reward = ({referralLevel_count,referralLevel_Earning,referralLevel_stake})
       Title: "Team",
 
       stake:"Total Stake",
-      total_stake:referralLevel_stake[0]/10**18,
+      total_stake:referralLevel_stake[10]/10**18,
       Price: referralLevel_Earning[10]/10**18,
       Member: referralLevel_count[10],
     },
@@ -136,7 +136,7 @@ const Reward = ({referralLevel_count,referralLevel_Earning,referralLevel_stake})
       Title: "Team",
 
       stake:"Total Stake",
-      total_stake:referralLevel_stake[0]/10**18,
+      total_stake:referralLevel_stake[11]/10**18,
       Price: referralLevel_Earning[11]/10**18,
       Member: referralLevel_count[11],
     },
@@ -153,10 +153,11 @@ const Reward = ({referralLevel_count,referralLevel_Earning,referralLevel_stake})
               <UserProfile />
             </div>
             <hr class="w-full border-black mt-4 p-0" />
-            {/* <div className="flex flex-col" style={{ alignContent }}>
-                      <p className="box-head ">Total Stake</p>
-                      <p className="box-desc"></p>
-                    </div> */}
+            <div className="flex flex-col justify-between" style={{ alignItems:"right",   padding:"20px",marginTop:"20px",borderRadius:"5px"}}>
+              <span>  <p style={{ fontWeight:700 }}>Total Team Stake : {TotalTeam_stake?(TotalTeam_stake/10**18):(0)}</p></span>
+
+                      {/* <p className="box-desc">100</p> */}
+            </div>
             <div className=" grid lg:grid-cols-4 max-md:grid-cols-3 gap-5 my-8 px-5 max-md:overflow-y-auto max-md:max-h-[500px] max-md:px-0 max-md:gap-2">
               {data.map((item, index) => (
                 <div key={index} className="re-box">
@@ -168,7 +169,7 @@ const Reward = ({referralLevel_count,referralLevel_Earning,referralLevel_stake})
                     </div>
                     <div className="flex flex-col">
                       <p className="box-head ">{item.stake}</p>
-                      <p className="box-desc"> {item.total_stake}</p>
+                      <p className="box-desc"> {item.total_stake>0?(item.total_stake):(0)}</p>
                     </div>
                   </div>
                   <div className="flex flex-col items-center">
@@ -183,11 +184,11 @@ const Reward = ({referralLevel_count,referralLevel_Earning,referralLevel_stake})
                     {" "}
                     <div className="flex flex-col">
                       <p className="box-head ">{item.Heading}</p>
-                      <p className="box-desc"> {item.Price}</p>
+                      <p className="box-desc"> {item.Price?(item.Price):(0)}</p>
                     </div>
                     <div className="flex flex-col">
                       <p className="box-head ">{item.Title}</p>
-                      <p className="box-desc"> {item.Member}</p>
+                      <p className="box-desc"> {item.Member?(item.Member):(0)}</p>
                     </div>
                   </div>
                 </div>

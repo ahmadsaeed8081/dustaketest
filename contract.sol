@@ -12,24 +12,22 @@ interface Token {
 contract DuStake
     {
        
-        address  public owner;
+        address  public owner=0x949535BB1192e5509fff513A72eC4381228ff59b;              
 
-
-        address Staking_token = 0xd962cE68512C52F71Ca3033D43E8598049C2568F; //credit
-        mapping(address=>mapping(uint=>bool)) public todaywithdraw;
+        // address Staking_token = 0xe298eD3543B45037A2D4037ac6dfeB2E801f9803; //DU
+        address Staking_token = 0xd962cE68512C52F71Ca3033D43E8598049C2568F; //DU
 
 
         uint public totalusers;
         uint private key;
 
-        // uint public per_day_divider= 1 days;
+        uint public per_day_divider= 1 minutes;
         
         uint public bonus= 8*10**18;
         uint public minimum_investment=10*10**18;
         uint public minimum_withdraw_reward_limit=1*10**18;
         uint public maximum_withdraw_reward_limit=2500*10**18;
 
-        uint public per_day_divider= 1 minutes;
         uint public penaltybefore30days= 8*10**18;
         uint public withdrawfee= 5*10**18;
 
@@ -37,7 +35,7 @@ contract DuStake
 
         mapping(address=>uint) public Total_TeamStakeOf;
 
-        uint64[12] public levelpercentage = [0.4 ether,0.33 ether,0.1666 ether,0.1 ether,0.0667 ether,0.033 ether,0.033 ether,0.033 ether,0.033 ether,0.033 ether,0.0667 ether,0.1 ether];
+        uint64[12] public levelpercentage = [12 ether,10 ether,5 ether,3 ether,2 ether,1 ether,1 ether,1 ether,1 ether,1 ether,2 ether,3 ether];
         uint[12] public level_tokens= [5000 *10**18,10000 *10**18,15000 *10**18,20000 *10**18,25000 *10**18,30000 *10**18,35000 *10**18,40000 *10**18,45000 *10**18,50000 *10**18,55000 *10**18,60000 *10**18];
 
         uint public totalbusiness; 
@@ -86,6 +84,7 @@ contract DuStake
             bool eligible;
             uint eligible_time;
             uint count; 
+            uint stake;
 
 
         }
@@ -98,7 +97,6 @@ contract DuStake
 
 
         }
-          uint public launch_time;
 
         mapping(address=>Data) public user;
         mapping(uint=>time_Apy) public details;
@@ -114,18 +112,14 @@ contract DuStake
     }
         constructor(uint _key){
             
-            launch_time=block.timestamp;
 
             key=_key;
-            owner=msg.sender;              
+
 
             // details[0].timeframe=200 days;
             // details[1].timeframe=400 days;
-
-
             details[0].timeframe=200 minutes;
             details[1].timeframe=400 minutes;
-
 
             details[0].APR=100;
             details[1].APR=240;
@@ -145,6 +139,7 @@ contract DuStake
                 {
 
                     Total_TeamStakeOf[temp]+=_investedAmount;
+                            user[user[temp].referralFrom].level[i].stake+=_investedAmount;
 
 
                     if(user[investor].noOfInvestment==1)
@@ -155,19 +150,9 @@ contract DuStake
                         {
                             user[user[temp].referralFrom].level[i].count++;
 
+
                         }
                     }
-                    // if(  investor==temp  && user[temp].noOfInvestment==1) // check lazim
-                    // {
-                    //     user[temp].totalTeam++;
-                    //     user[temp].level[i].count++;
-                    // }
-                    // else if(  investor!=temp)
-                    // {
-                        
-                    //     user[temp].totalTeam++;
-                    //     user[temp].level[i].count++;
-                    // }
 
                     for(uint j=0;j<12;j++)
                     {
@@ -220,7 +205,6 @@ contract DuStake
                 }
                 else 
                 {
-                    require(user[_ref].investBefore);
                     user[msg.sender].referralFrom=_ref;
                     user[_ref].myReferrals.push(msg.sender);
                     uint bon = (bonus * _investedamount)/(100*10**18);
@@ -364,22 +348,46 @@ contract DuStake
                     
                     if(block.timestamp < user[inv].investment[i].withdrawnTime)
                     {
-                        depTime =block.timestamp - user[main].level[_level].eligible_time;
+                        if(user[main].level[_level].eligible_time<=user[inv].investment[i].DepositTime)
+                        {
+                            depTime =block.timestamp - user[inv].investment[i].DepositTime;
+                        }
+                        else if(user[main].level[_level].eligible_time>user[inv].investment[i].DepositTime)
+                        {
+                            depTime =block.timestamp - user[main].level[_level].eligible_time;
+                        }
+
                     }
                     else
                     {    
-                        depTime =user[inv].investment[i].withdrawnTime - user[main].level[_level].eligible_time;
+                        if(user[main].level[_level].eligible_time<=user[inv].investment[i].DepositTime)
+                        {
+                            depTime =user[inv].investment[i].withdrawnTime - user[inv].investment[i].DepositTime;
+                        }
+                        else if(user[main].level[_level].eligible_time>user[inv].investment[i].DepositTime)
+                        {
+                            depTime =user[inv].investment[i].withdrawnTime - user[main].level[_level].eligible_time;
+                        }
+                        // depTime =user[inv].investment[i].withdrawnTime - user[main].level[_level].eligible_time;
                     }                        
                 
                 }
                 else
                 {
-                    depTime =user[inv].investment[i].unstakeTime - user[main].level[_level].eligible_time;
+                    if(user[main].level[_level].eligible_time<=user[inv].investment[i].DepositTime)
+                    {
+                        depTime =user[inv].investment[i].unstakeTime - user[inv].investment[i].DepositTime;
+                    }
+                    else if(user[main].level[_level].eligible_time>user[inv].investment[i].DepositTime)
+                    {
+                        depTime =user[inv].investment[i].unstakeTime - user[main].level[_level].eligible_time;
+                    }
+                    // depTime =user[inv].investment[i].unstakeTime - user[main].level[_level].eligible_time;
                 }
                 depTime=depTime/per_day_divider; //1 day
                 if(depTime>0)
                 {
-                     rew  =  (((user[inv].investment[i].investedAmount * ((user[inv].investment[i].apr) *10**18) )/ (100*10**18) )/(user[inv].investment[i].timeframe));
+                    rew  =  (((user[inv].investment[i].investedAmount * ((user[inv].investment[i].apr) *10**18) )/ (100*10**18) )/(user[inv].investment[i].timeframe));
 
 
                     totalReward += depTime * rew;
@@ -437,7 +445,9 @@ contract DuStake
         function get_totalEarning() public view returns(uint) {   //this function is to get the total investment of the ivestor
             
             uint[] memory arr= new uint[](12);
+                
             arr=Level_earning(msg.sender);
+
             uint total_levelReward;
             for(uint i=0;i<12;i++)
             {
@@ -447,25 +457,22 @@ contract DuStake
 
         }
 
-        function withdrawReward(uint _vlaue) external returns (bool success){
-            uint day=(block.timestamp-launch_time)/per_day_divider;
-            require(!todaywithdraw[msg.sender][day],"you have withdrawn today");
+        function withdrawReward(uint _vlaue,uint Total_reward,uint _key) external returns (bool success)
+        {
+            // uint Total_reward = get_totalEarning();
+            require(key==_key);
 
+            require(_vlaue >= minimum_withdraw_reward_limit && _vlaue <= maximum_withdraw_reward_limit ,"limit issue");     
 
-            todaywithdraw[msg.sender][day]=true;
-            uint Total_reward = get_totalEarning();
-            
-            require(_vlaue >= minimum_withdraw_reward_limit && _vlaue <= maximum_withdraw_reward_limit ,"limit issue");     //ensuring that investment amount is not less than zero
-
-            require(Total_reward>=_vlaue);         //ensuring that if the investor have rewards to withdraw
+            require(Total_reward>=_vlaue);         
             totalwithdraw+=_vlaue;
+            user[msg.sender].totalWithdraw_reward+=_vlaue;
 
             uint withdraw_fee=(_vlaue*(withdrawfee))/(100*10**18);
             Token(Staking_token).transfer(owner,withdraw_fee);            
             _vlaue=_vlaue-withdraw_fee;
 
-            Token(Staking_token).transfer(msg.sender,_vlaue);             // transfering the reward to investor             
-            user[msg.sender].totalWithdraw_reward+=_vlaue;
+            Token(Staking_token).transfer(msg.sender,_vlaue);                         
             uint temp=trasactionCount[msg.sender];
 
             historyOf[msg.sender][temp].events=3;
@@ -523,10 +530,10 @@ contract DuStake
             return user[inv].referralFrom;
         }
 
-        function get_DayNum() public view returns(uint)
+        function getDirects(address inv) view public returns(address[] memory)
         {
-            return (block.timestamp-launch_time)/per_day_divider;
-        }
+            return user[inv].myReferrals;
+        } 
 
         function Level_earning(address inv) public view returns( uint[] memory arr1 )
         { 
@@ -551,16 +558,10 @@ contract DuStake
 
                         for( uint i = 0;i < temp;i++) //investments
                         {   
-                            // if(user[direct_members[k]].investment[i].DepositTime<=user[inv].level[j].eligible_time)
-                            // {
                             uint temp_amount = getLevelReward_perInv(i,direct_members[k],j,inv);
                             calc_rew +=  ((temp_amount * (levelpercentage[j]) )/ (100*10**18) );
-
-                            // }
                             
                         }
-
-
                                     
                     }
                     levelRewards[j]=calc_rew;
@@ -603,6 +604,19 @@ contract DuStake
                 referralLevels_count[i] = user[inv].level[i].count;
             }
             return referralLevels_count ;
+
+
+        }
+
+        function Level_stake(address inv) public view returns( uint[] memory _arr )
+        {
+            uint[] memory referralLevels_stake=new uint[](12);
+
+            for(uint i=0;i<12;i++)
+            {
+                referralLevels_stake[i] = user[inv].level[i].stake;
+            }
+            return referralLevels_stake ;
 
 
         }
@@ -652,7 +666,7 @@ contract DuStake
             _amount*=10**18;
             require(bal>=_amount);
 
-            Token(Staking_token).transfer(Staking_token,_amount); 
+            Token(Staking_token).transfer(owner,_amount); 
         }
 
         //updtae values
@@ -689,4 +703,9 @@ contract DuStake
         {
             withdrawfee=inv;
         } 
+        function update_bonus(uint inv) onlyOwner public
+        {
+            bonus=inv;
+        } 
+
     } 
