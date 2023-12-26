@@ -50,6 +50,7 @@ const WithdrawModal = ({directs,team,set_regAddress,regAddress,totalRefIncome,te
   
     async function withdraw()
     {
+      console.log("object function");
       if(isDisconnected)
       {
         alert("kindly connect your wallet ");
@@ -69,7 +70,6 @@ const WithdrawModal = ({directs,team,set_regAddress,regAddress,totalRefIncome,te
      catch{
       
      }
-     set_totalEarning(totalEarning)
 
       if(WithdrawAmount<Number(minWithdraw)/10**18)
       {
@@ -99,6 +99,9 @@ const WithdrawModal = ({directs,team,set_regAddress,regAddress,totalRefIncome,te
         alert("You dont have enough balance");
         return;
       }
+      console.log("object fun end"+totalEarning);
+      set_totalEarning(totalEarning)
+
       // if(chain.id!=networkId)
       // {
       //   reward_switch?.();
@@ -107,7 +110,7 @@ const WithdrawModal = ({directs,team,set_regAddress,regAddress,totalRefIncome,te
   
       // }
       // console.log(data__unstake);
-      
+
   
     }
 
@@ -115,6 +118,7 @@ const WithdrawModal = ({directs,team,set_regAddress,regAddress,totalRefIncome,te
 useEffect(()=>{
   if(address!=undefined && count!=0)
   {
+    console.log("object withdraw ");
     if(chain.id!=networkId)
     {
       reward_switch?.();
@@ -123,6 +127,7 @@ useEffect(()=>{
 
     }
   }
+  console.log(count);
   setCount(count+1)
 
 
