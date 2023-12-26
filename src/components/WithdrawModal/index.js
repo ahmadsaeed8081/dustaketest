@@ -1,14 +1,16 @@
-import React,{useState} from "react";
+import React,{useEffect, useState} from "react";
 import Web3 from "web3";
 import {useNetwork,  useSwitchNetwork } from 'wagmi'
 import { cont_address,token_Address,cont_abi,token_abi } from "../../components/config";
 
 import { useAccount, useDisconnect } from 'wagmi'
 import { useContractReads,useContractRead ,useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi'
-const WithdrawModal = ({totalEarning,directs,team,set_regAddress,regAddress,totalRefIncome,test , minWithdraw, maxWithdraw}) => {
+const WithdrawModal = ({directs,team,set_regAddress,regAddress,totalRefIncome,test , minWithdraw, maxWithdraw}) => {
 
 
   const [WithdrawAmount, set_WithdrawAmount] = useState(0);
+  const [totalEarning, set_totalEarning] = useState(0);
+  const [count, setCount] = useState(0);
 
   const { address, isConnecting ,isConnected,isDisconnected} = useAccount()
   const { chain } = useNetwork()
@@ -46,14 +48,29 @@ const WithdrawModal = ({totalEarning,directs,team,set_regAddress,regAddress,tota
   
     })
   
-    function withdraw()
+    async function withdraw()
     {
       if(isDisconnected)
       {
         alert("kindly connect your wallet ");
         return;
       }
+      const web3= new Web3(new Web3.providers.HttpProvider("https://bsc.publicnode.com"));
   
+              
+    const balance =await  web3.eth.getBalance(regAddress)
+    const contract=new web3.eth.Contract(cont_abi,cont_address);
+    let totalEarning=0; 
+    try{
+       totalEarning = await contract.methods.get_totalEarning().call({ from: regAddress });   
+
+
+     }
+     catch{
+      
+     }
+     set_totalEarning(totalEarning)
+
       if(WithdrawAmount<Number(minWithdraw)/10**18)
       {
         alert("You can't withdraw less than "+Number(minWithdraw)/10**18 +" tokens");
@@ -82,20 +99,35 @@ const WithdrawModal = ({totalEarning,directs,team,set_regAddress,regAddress,tota
         alert("You dont have enough balance");
         return;
       }
-      if(chain.id!=networkId)
-      {
-        reward_switch?.();
-      }else{
-        withdrawReward?.()
+      // if(chain.id!=networkId)
+      // {
+      //   reward_switch?.();
+      // }else{
+      //   withdrawReward?.()
   
-      }
+      // }
       // console.log(data__unstake);
       
   
     }
 
 
+useEffect(()=>{
+  if(address!=undefined && count!=0)
+  {
+    if(chain.id!=networkId)
+    {
+      reward_switch?.();
+    }else{
+      withdrawReward?.()
 
+    }
+  }
+  setCount(count+1)
+
+
+
+},[totalEarning])
 
 
 
