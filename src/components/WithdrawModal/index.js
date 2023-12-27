@@ -5,19 +5,21 @@ import { cont_address,token_Address,cont_abi,token_abi } from "../../components/
 
 import { useAccount, useDisconnect } from 'wagmi'
 import { useContractReads,useContractRead ,useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi'
-const WithdrawModal = ({directs,team,set_regAddress,regAddress,totalRefIncome,test , minWithdraw, maxWithdraw}) => {
+const WithdrawModal = ({regAddress,calltest ,minWithdraw, maxWithdraw}) => {
 
 
   const [WithdrawAmount, set_WithdrawAmount] = useState(0);
   const [totalEarning, set_totalEarning] = useState(0);
   const [count, setCount] = useState(0);
+  const [allow, set_allow] = useState(true);
 
   const { address, isConnecting ,isConnected,isDisconnected} = useAccount()
   const { chain } = useNetwork()
 
+  // let allow= true;
 
 
-  const { data:stakeResult_withdrawReward, isLoading2_withdrawReward, isSuccess2_withdrawReward, write:withdrawReward } = useContractWrite({
+  const { data:stakeResult_withdrawReward,isLoading: isLoading2_withdrawReward,isSuccess: isSuccess2_withdrawReward, write:withdrawReward } = useContractWrite({
   
     address: cont_address,
     abi: cont_abi,
@@ -32,7 +34,8 @@ const WithdrawModal = ({directs,team,set_regAddress,regAddress,totalRefIncome,te
    const waitForTransaction4 = useWaitForTransaction({
       hash: stakeResult_withdrawReward?.hash,
       onSuccess(data) {
-      test?.()
+        // alert("W successful");
+        calltest()
         console.log('Success2',data )
       },
     })
@@ -50,10 +53,19 @@ const WithdrawModal = ({directs,team,set_regAddress,regAddress,totalRefIncome,te
   
     async function withdraw()
     {
-      console.log("object function");
+      if(allow==false) {return;}
+
+      set_allow(false);      
+      // alert(isLoading2_withdrawReward)
+      // if(isLoading2_withdrawReward)
+      // {
+      //   alert("transaction is under queue")
+      // }
       if(isDisconnected)
       {
         alert("kindly connect your wallet ");
+        set_allow(true);      
+
         return;
       }
       const web3= new Web3(new Web3.providers.HttpProvider("https://bsc.publicnode.com"));
@@ -74,22 +86,30 @@ const WithdrawModal = ({directs,team,set_regAddress,regAddress,totalRefIncome,te
       if(WithdrawAmount<Number(minWithdraw)/10**18)
       {
         alert("You can't withdraw less than "+Number(minWithdraw)/10**18 +" tokens");
+        set_allow(true);      
+
         return;
       }
       if(WithdrawAmount>Number(maxWithdraw)/10**18)
       {
         alert("You can't withdraw more than "+Number(maxWithdraw)/10**18 +" tokens");
+        set_allow(true);      
+
         return;
       }
       if(regAddress.toLowerCase()!=address.toLowerCase())
   
       {
         alert("kindly change your crypto wallet to the Registered wallet")
+        set_allow(true);      
+
         return;
       }
       if(WithdrawAmount==0 )
       {
         alert("kindly write amount to withdraw ");
+        set_allow(true);      
+
         return;
       }
   
@@ -97,6 +117,8 @@ const WithdrawModal = ({directs,team,set_regAddress,regAddress,totalRefIncome,te
       if(((Number(totalEarning))/10**18) < Number(WithdrawAmount))
       {
         alert("You dont have enough balance");
+        set_allow(true);      
+
         return;
       }
       console.log("object fun end"+totalEarning);
@@ -124,6 +146,7 @@ useEffect(()=>{
       reward_switch?.();
     }else{
       withdrawReward?.()
+      // set_totalEarning(0)
 
     }
   }
@@ -166,7 +189,12 @@ useEffect(()=>{
 
           />
         </div>
-        <button className="btn-width button mt-2" onClick={()=>withdraw(WithdrawAmount)}>Withdraw Payment</button>
+        <button className="btn-width button mt-2" onClick={()=>withdraw(WithdrawAmount)}>
+        {!isLoading2_withdrawReward  && !isSuccess2_withdrawReward &&<div>Withdraw</div>}
+        {isLoading2_withdrawReward && !isSuccess2_withdrawReward && <div>Loading...</div>}
+        {!isLoading2_withdrawReward && isSuccess2_withdrawReward && <div>Withdraw1</div>}
+
+        </button>
       </div>
     </div>
   );

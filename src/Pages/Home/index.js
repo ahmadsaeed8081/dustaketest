@@ -51,7 +51,7 @@ const { data:stakeResult_withdrawReward, isLoading2_withdrawReward, isSuccess2_w
 
 })
 
-const networkId=97;
+const networkId=56;
 
 
  const waitForTransaction4 = useWaitForTransaction({
@@ -120,6 +120,12 @@ const networkId=97;
     // console.log(data__unstake);
     
 
+  }
+
+
+
+  function calltest(){
+    test();
   }
 
   const dashboardList = [
@@ -284,7 +290,7 @@ const networkId=97;
       </div>
 
       <Modal open={open} onClose={() => setOpen(false)}>
-        <WithdrawModal withdraw={withdraw} minWithdraw={minWithdraw} maxWithdraw={maxWithdraw} totalEarning={totalEarning} regAddress={regAddress}/>
+        <WithdrawModal calltest={calltest} withdraw={withdraw} minWithdraw={minWithdraw} maxWithdraw={maxWithdraw} totalEarning={totalEarning} regAddress={regAddress}/>
       </Modal>
 
 

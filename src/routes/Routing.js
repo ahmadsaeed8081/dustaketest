@@ -247,7 +247,7 @@ useEffect(()=>{
             path="home"
             element={
               <ProtectedRoute>
-                <Home loader={loader} minWithdraw={minWithdraw} maxWithdraw={maxWithdraw} test={test} totalRefIncome={totalRefIncome}  totalReward={totalReward} totalInvestment={totalInvestment} Total_withdraw={Total_withdraw} totalEarning={totalEarning} directs={directs} team={team}  regAddress={regAddress}     set_regAddress={set_regAddress}    />
+                <Home  loader={loader} minWithdraw={minWithdraw} maxWithdraw={maxWithdraw} test={test} totalRefIncome={totalRefIncome}  totalReward={totalReward} totalInvestment={totalInvestment} Total_withdraw={Total_withdraw} totalEarning={totalEarning} directs={directs} team={team}  regAddress={regAddress}     set_regAddress={set_regAddress}    />
               </ProtectedRoute>
             }
           />
