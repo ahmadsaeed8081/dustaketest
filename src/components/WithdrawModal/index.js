@@ -192,7 +192,7 @@ useEffect(()=>{
         <button className="btn-width button mt-2" onClick={()=>withdraw(WithdrawAmount)}>
         {!isLoading2_withdrawReward  && !isSuccess2_withdrawReward &&<div>Withdraw</div>}
         {isLoading2_withdrawReward && !isSuccess2_withdrawReward && <div>Loading...</div>}
-        {!isLoading2_withdrawReward && isSuccess2_withdrawReward && <div>Withdraw1</div>}
+        {!isLoading2_withdrawReward && isSuccess2_withdrawReward && <div>Withdraw</div>}
 
         </button>
       </div>
