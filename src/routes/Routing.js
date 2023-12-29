@@ -19,7 +19,7 @@ import Web3 from "web3";
 
 import {useNetwork,  useSwitchNetwork } from 'wagmi'
 import { useAccount, useDisconnect } from 'wagmi'
-import { cont_address,token_Address,cont_abi,token_abi } from "../components/config";
+import { cont_address,cont2_address,cont2_abi,token_Address,cont_abi,token_abi } from "../components/config";
 import { useContractReads,useContractRead ,useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi'
 const cont_Contract = {
   address: cont_address,
@@ -116,6 +116,8 @@ useEffect(()=>{
    const balance =await  web3.eth.getBalance(regAddress)
     const contract=new web3.eth.Contract(cont_abi,cont_address);
     const contract1=new web3.eth.Contract(token_abi,token_Address);
+    const contract2=new web3.eth.Contract(cont2_abi,cont2_address);
+
     let DuBalance = await contract1.methods.balanceOf(regAddress).call();    
     
     let min_stakeAmount = await contract.methods.minimum_investment().call();    
@@ -130,7 +132,7 @@ useEffect(()=>{
     let totalEarning; 
     let referralLevel_earning
     try{
-       totalEarning = await contract.methods.get_totalEarning().call({ from: regAddress });   
+       totalEarning = await contract2.methods.get_totalEarning(regAddress).call({ from: regAddress });   
 
      }
      catch{
@@ -142,7 +144,7 @@ useEffect(()=>{
     let referralLevel_stake = await contract.methods.Level_stake(regAddress).call();       
   
     try{
-       referralLevel_earning = await contract.methods.Level_earning(regAddress).call();       
+       referralLevel_earning = await contract2.methods.Level_earning(regAddress).call();       
 
     }
     catch{

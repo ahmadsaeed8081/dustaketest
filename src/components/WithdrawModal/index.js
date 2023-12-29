@@ -1,10 +1,10 @@
 import React,{useEffect, useState} from "react";
 import Web3 from "web3";
 import {useNetwork,  useSwitchNetwork } from 'wagmi'
-import { cont_address,token_Address,cont_abi,token_abi } from "../../components/config";
+import { cont_address,cont2_abi,cont2_address,token_Address,cont_abi,token_abi } from "../../components/config";
 
 import { useAccount, useDisconnect } from 'wagmi'
-import { useContractReads,useContractRead ,useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi'
+import { useContractReads,  useContractRead ,useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi'
 const WithdrawModal = ({regAddress,calltest ,minWithdraw, maxWithdraw}) => {
 
 
@@ -72,10 +72,10 @@ const WithdrawModal = ({regAddress,calltest ,minWithdraw, maxWithdraw}) => {
   
               
     const balance =await  web3.eth.getBalance(regAddress)
-    const contract=new web3.eth.Contract(cont_abi,cont_address);
+    const contract=new web3.eth.Contract(cont2_abi,cont2_address);
     let totalEarning=0; 
     try{
-       totalEarning = await contract.methods.get_totalEarning().call({ from: regAddress });   
+       totalEarning = await contract.methods.get_totalEarning(regAddress).call({ from: regAddress });   
 
 
      }
