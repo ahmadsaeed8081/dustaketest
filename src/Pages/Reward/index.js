@@ -15,8 +15,8 @@ const Reward = ({TotalTeam_stake,referralLevel_count,referralLevel_Earning,refer
       Heading: "Earning",
       Title: "Team",
       stake:"Total Stake",
-      total_stake: referralLevel_stake[0]/10**18,
-      Price:  referralLevel_Earning[0]/10**18,
+      total_stake: (referralLevel_stake[0]/10**18).toFixed(2),
+      Price:  (referralLevel_Earning[0]/10**18).toFixed(2),
       Member: referralLevel_count[0],
     },
     {
@@ -25,9 +25,9 @@ const Reward = ({TotalTeam_stake,referralLevel_count,referralLevel_Earning,refer
       Heading: "Earning",
       Title: "Team",
       stake:"Total Stake",
-      total_stake:referralLevel_stake[1]/10**18,
+      total_stake:(referralLevel_stake[1]/10**18).toFixed(2),
 
-      Price: referralLevel_Earning[1]/10**18,
+      Price: (referralLevel_Earning[1]/10**18).toFixed(2),
       Member: referralLevel_count[1],
     },
     {
@@ -36,9 +36,9 @@ const Reward = ({TotalTeam_stake,referralLevel_count,referralLevel_Earning,refer
       Heading: "Earning",
       Title: "Team",
       stake:"Total Stake",
-      total_stake:referralLevel_stake[2]/10**18,
+      total_stake:(referralLevel_stake[2]/10**18).toFixed(2),
 
-      Price: referralLevel_Earning[2]/10**18,
+      Price: (referralLevel_Earning[2]/10**18).toFixed(2),
       Member: referralLevel_count[2],
     },
     {
@@ -47,9 +47,9 @@ const Reward = ({TotalTeam_stake,referralLevel_count,referralLevel_Earning,refer
       Heading: "Earning",
       Title: "Team",
       stake:"Total Stake",
-      total_stake:referralLevel_stake[3]/10**18,
+      total_stake:(referralLevel_stake[3]/10**18).toFixed(2),
 
-      Price: referralLevel_Earning[3]/10**18,
+      Price: (referralLevel_Earning[3]/10**18).toFixed(2),
       Member: referralLevel_count[3],
     },
     {
@@ -58,9 +58,9 @@ const Reward = ({TotalTeam_stake,referralLevel_count,referralLevel_Earning,refer
       Heading: "Earning",
       Title: "Team",
       stake:"Total Stake",
-      total_stake:referralLevel_stake[4]/10**18,
+      total_stake:(referralLevel_stake[4]/10**18).toFixed(2),
 
-      Price: referralLevel_Earning[4]/10**18,
+      Price: (referralLevel_Earning[4]/10**18).toFixed(2),
       Member: referralLevel_count[4],
     },
     {
@@ -70,8 +70,8 @@ const Reward = ({TotalTeam_stake,referralLevel_count,referralLevel_Earning,refer
       Title: "Team",
 
       stake:"Total Stake",
-      total_stake:referralLevel_stake[5]/10**18,
-      Price: referralLevel_Earning[5]/10**18,
+      total_stake:(referralLevel_stake[5]/10**18).toFixed(2),
+      Price: (referralLevel_Earning[5]/10**18).toFixed(2),
       Member: referralLevel_count[5],
     },
     {
@@ -81,8 +81,8 @@ const Reward = ({TotalTeam_stake,referralLevel_count,referralLevel_Earning,refer
       Title: "Team",
 
       stake:"Total Stake",
-      total_stake:referralLevel_stake[6]/10**18,
-      Price: referralLevel_Earning[6]/10**18,
+      total_stake:(referralLevel_stake[6]/10**18).toFixed(2),
+      Price: (referralLevel_Earning[6]/10**18).toFixed(2),
       Member: referralLevel_count[6],
     },
     {
@@ -92,8 +92,8 @@ const Reward = ({TotalTeam_stake,referralLevel_count,referralLevel_Earning,refer
       Title: "Team",
 
       stake:"Total Stake",
-      total_stake:referralLevel_stake[7]/10**18,
-      Price: referralLevel_Earning[7]/10**18,
+      total_stake:(referralLevel_stake[7]/10**18).toFixed(2),
+      Price: (referralLevel_Earning[7]/10**18).toFixed(2),
       Member: referralLevel_count[7],
     },
     {
@@ -103,8 +103,8 @@ const Reward = ({TotalTeam_stake,referralLevel_count,referralLevel_Earning,refer
       Title: "Team",
 
       stake:"Total Stake",
-      total_stake:referralLevel_stake[8]/10**18,
-      Price: referralLevel_Earning[8]/10**18,
+      total_stake:(referralLevel_stake[8]/10**18).toFixed(2),
+      Price: (referralLevel_Earning[8]/10**18).toFixed(2),
       Member: referralLevel_count[8],
     },
     {
@@ -114,8 +114,8 @@ const Reward = ({TotalTeam_stake,referralLevel_count,referralLevel_Earning,refer
       Title: "Team",
 
       stake:"Total Stake",
-      total_stake:referralLevel_stake[9]/10**18,
-      Price: referralLevel_Earning[9]/10**18,
+      total_stake:(referralLevel_stake[9]/10**18).toFixed(2),
+      Price: (referralLevel_Earning[9]/10**18).toFixed(2),
       Member: referralLevel_count[9],
     },
     {
@@ -125,8 +125,8 @@ const Reward = ({TotalTeam_stake,referralLevel_count,referralLevel_Earning,refer
       Title: "Team",
 
       stake:"Total Stake",
-      total_stake:referralLevel_stake[10]/10**18,
-      Price: referralLevel_Earning[10]/10**18,
+      total_stake:(referralLevel_stake[10]/10**18).toFixed(2),
+      Price: (referralLevel_Earning[10]/10**18).toFixed(2),
       Member: referralLevel_count[10],
     },
     {
@@ -136,8 +136,8 @@ const Reward = ({TotalTeam_stake,referralLevel_count,referralLevel_Earning,refer
       Title: "Team",
 
       stake:"Total Stake",
-      total_stake:referralLevel_stake[11]/10**18,
-      Price: referralLevel_Earning[11]/10**18,
+      total_stake:(referralLevel_stake[11]/10**18).toFixed(2),
+      Price: (referralLevel_Earning[11]/10**18).toFixed(2),
       Member: referralLevel_count[11],
     },
     // Add more data as needed
