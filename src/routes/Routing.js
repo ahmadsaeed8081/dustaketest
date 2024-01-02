@@ -150,9 +150,9 @@ useEffect(()=>{
     catch{
      
     }
-    // let Total_withdraw = await contract.methods.total_withdraw_reaward().call({ from: regAddress });
+    let Total_withdraw = await contract2.methods.get_totalWithdraw_reward(regAddress).call();
 
-       
+      //  alert(Total_withdraw)
     let user = await contract.methods.user(regAddress).call();      
     let Total_TeamStake = await contract.methods.Total_TeamStakeOf(regAddress).call();       
 
@@ -184,7 +184,7 @@ useEffect(()=>{
 
     }    
     set_totalReward(totalReward);
-    set_Total_withdraw(user[2]);
+    set_Total_withdraw(Total_withdraw);
 
     setLoader(false)
 
