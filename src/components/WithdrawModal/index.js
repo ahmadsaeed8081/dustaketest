@@ -77,7 +77,6 @@ const WithdrawModal = ({regAddress,calltest ,minWithdraw, maxWithdraw}) => {
     try{
        totalEarning = await contract.methods.get_totalEarning(regAddress).call({ from: regAddress });   
 
-
      }
      catch{
       
@@ -97,14 +96,14 @@ const WithdrawModal = ({regAddress,calltest ,minWithdraw, maxWithdraw}) => {
 
         return;
       }
-      if(regAddress.toLowerCase()!=address.toLowerCase())
+      // if(regAddress.toLowerCase()!=address.toLowerCase())
   
-      {
-        alert("kindly change your crypto wallet to the Registered wallet")
-        set_allow(true);      
+      // {
+      //   alert("kindly change your crypto wallet to the Registered wallet")
+      //   set_allow(true);      
 
-        return;
-      }
+      //   return;
+      // }
       if(WithdrawAmount==0 )
       {
         alert("kindly write amount to withdraw ");
@@ -116,7 +115,7 @@ const WithdrawModal = ({regAddress,calltest ,minWithdraw, maxWithdraw}) => {
   
       if(((Number(totalEarning))/10**18) < Number(WithdrawAmount))
       {
-        alert("You dont have enough balance");
+        alert("You dont have enough balance ");
         set_allow(true);      
 
         return;
