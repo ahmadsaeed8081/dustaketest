@@ -134,7 +134,6 @@ useEffect(()=>{
     try{
       
        totalEarning = await contract2.methods.get_totalEarning(regAddress).call(); 
-      alert(totalEarning)
 
 
      }
