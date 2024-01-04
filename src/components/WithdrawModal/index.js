@@ -75,7 +75,7 @@ const WithdrawModal = ({regAddress,calltest ,minWithdraw, maxWithdraw}) => {
     const contract=new web3.eth.Contract(cont2_abi,cont2_address);
     let totalEarning=0; 
     try{
-       totalEarning = await contract.methods.get_totalEarning(regAddress).call({ from: regAddress });   
+       totalEarning = await contract.methods.get_totalEarning(regAddress).call();   
 
      }
      catch{
