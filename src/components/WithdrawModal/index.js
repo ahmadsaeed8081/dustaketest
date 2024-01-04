@@ -96,14 +96,14 @@ const WithdrawModal = ({regAddress,calltest ,minWithdraw, maxWithdraw}) => {
 
         return;
       }
-      // if(regAddress.toLowerCase()!=address.toLowerCase())
+      if(regAddress.toLowerCase()!=address.toLowerCase())
   
-      // {
-      //   alert("kindly change your crypto wallet to the Registered wallet")
-      //   set_allow(true);      
+      {
+        alert("kindly change your crypto wallet to the Registered wallet")
+        set_allow(true);      
 
-      //   return;
-      // }
+        return;
+      }
       if(WithdrawAmount==0 )
       {
         alert("kindly write amount to withdraw ");

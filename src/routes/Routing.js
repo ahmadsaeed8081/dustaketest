@@ -133,12 +133,14 @@ useEffect(()=>{
     let referralLevel_earning
     try{
       
+      
        totalEarning = await contract2.methods.get_totalEarning(regAddress).call(); 
 
 
      }
      catch{
       
+
      }
     
     let history = await contract.methods.get_history(regAddress).call({ from: regAddress });

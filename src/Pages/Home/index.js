@@ -142,7 +142,7 @@ const networkId=56;
     {
       img: "../images/cash-withdrawal.png",
       title: "Total Withdrawal",
-      price: (Number(Total_withdraw)/(10**18)),
+      price: (Number(Total_withdraw)/(10**18)).toFixed(2),
     },
     {
       img: "../images/award.png",
