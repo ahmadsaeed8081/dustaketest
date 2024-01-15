@@ -78,7 +78,7 @@ if(img){
     else if(res0.data[0].Image!="null" && res0.data[0].verified== "underApproval")
     {
 
-      set_status(2)
+      set_status(0) //change
 
     }
     else if(res0.data[0].Image!="null" && res0.data[0].verified== "verified" )
@@ -134,15 +134,18 @@ useEffect(()=>{
                     <>
                       {/* <GalleryIcon /> */}
                       <img src="/images/cloud.png" className="i-img" />
-                      <div className="u-lbl">Choose file to upload</div>
+                      <div className="u-lbl">Choose Image to upload<br></br> Max Size :  5 MB</div>
+                      {/* <h1 className="u-lbl" >Max Size :  5 MB</h1> */}
+
                     </>
                   )}
                   <input
                     type="file"
-                    accept="image/*"
+                    // accept="image/*"
                     title=""
                     name="image"
                     id="upload_img"
+                    accept=".png, .jpg, .jpeg"
                     required
                     className="select-file cleanbtn"
                     onChange={(e) => {
@@ -152,8 +155,12 @@ useEffect(()=>{
                 </div>
                 <div className="img-box flex justify-center items-center">
                   <img src="../images/idcardimg.png" alt="" className="img" />
+
                 </div>
               </div>
+              {/* <div className="justify-center">
+              <h1 className="u-lbl" style={{ textAlign:"center" }}>Image Size should be 5 MB</h1>
+            </div> */}
               <div className="flex btns justify-center items-center gap-6 mt-7 max-md:gap-4">
                 <button className="can">Cancel</button>
                 <button className="sub"  onClick={upload} >Submit</button>

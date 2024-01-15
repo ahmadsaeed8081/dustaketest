@@ -154,7 +154,7 @@ const Reward = ({TotalTeam_stake,referralLevel_count,referralLevel_Earning,refer
             </div>
             <hr class="w-full border-black mt-4 p-0" />
             <div className="flex flex-col justify-between" style={{ alignItems:"right",   padding:"20px",marginTop:"20px",borderRadius:"5px"}}>
-              <span>  <p style={{ fontWeight:700 }}>Total Team Stake : {TotalTeam_stake?(TotalTeam_stake/10**18):(0)}</p></span>
+              <span>  <p style={{ fontWeight:700 }}>Total Team Stake : {TotalTeam_stake?(Number(TotalTeam_stake/10**18).toFixed(2)):(0)}</p></span>
 
                       {/* <p className="box-desc">100</p> */}
             </div>

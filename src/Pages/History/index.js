@@ -1,15 +1,24 @@
 import React from "react";
 import Wrapper from "../../routes/Wrapper";
 import UserProfile from "../../components/userProfile";
-
+import moment from "moment";
 const History = ({history}) => {
 
-  const count = (_deadline) => {
-    console.log("here is deadine "+_deadline)
-    // var now = new Date().getTime();
-    _deadline =(Number(_deadline) * 1000);
-    var now = new Date().getDate(_deadline)+"-"+(new Date().getMonth(_deadline)+1)+"-"+new Date().getFullYear(_deadline);
-return now
+
+
+  function find_date( time){
+    const now = new Date(time*1000);
+    console.log("its tie time"+ now);
+
+    const t=moment(now, "YYYYMMDD").fromNow();
+    return t;
+  }
+  const count = (time) => {
+    const now = new Date(time*1000);
+    console.log("its tie time"+ now);
+
+    const t=moment(now).format('D MMM YYYY');
+    return t;
     
   };
 
