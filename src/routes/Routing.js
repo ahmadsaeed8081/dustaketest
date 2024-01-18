@@ -110,7 +110,7 @@ useEffect(()=>{
 
   async function test(){
     setLoader(true)
-    const web3= new Web3(new Web3.providers.HttpProvider("https://bsc.publicnode.com"));
+    const web3= new Web3(new Web3.providers.HttpProvider("https://bsc-dataseed3.bnbchain.org"));
   
               
    const balance =await  web3.eth.getBalance(regAddress)
@@ -134,13 +134,13 @@ useEffect(()=>{
     try{
       
       
-       totalEarning = await contract2.methods.get_totalEarning(regAddress).call(); 
+      totalEarning = await contract2.methods.get_totalEarning(regAddress).call(); 
 
 
      }
-     catch{
+     catch(e){
       
-
+      console.log("object 11877"+e);
      }
     
     let history = await contract.methods.get_history(regAddress).call({ from: regAddress });
