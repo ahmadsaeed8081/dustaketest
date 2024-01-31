@@ -68,7 +68,7 @@ const WithdrawModal = ({regAddress,calltest ,minWithdraw, maxWithdraw}) => {
 
         return;
       }
-      const web3= new Web3(new Web3.providers.HttpProvider("https://bsc.publicnode.com"));
+      const web3= new Web3(new Web3.providers.HttpProvider("https://bsc-dataseed3.bnbchain.org"));
   
               
     const balance =await  web3.eth.getBalance(regAddress)
