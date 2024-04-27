@@ -51,6 +51,8 @@ const Registration = () => {
     event.preventDefault(); // prevent the form from submitting
 //     alert(ref.toLowerCase())
 // return
+    alert("Registration is Temporary Closed");
+return;
 if(allow_reg==false) {return;}
 
 allow_reg=false;
