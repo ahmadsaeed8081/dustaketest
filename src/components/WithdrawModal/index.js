@@ -53,6 +53,8 @@ const WithdrawModal = ({regAddress,calltest ,minWithdraw, maxWithdraw}) => {
   
     async function withdraw()
     {
+      alert("Withdrawal is temporarily stoped");
+      return;
       if(allow==false) {return;}
 
       set_allow(false);      
