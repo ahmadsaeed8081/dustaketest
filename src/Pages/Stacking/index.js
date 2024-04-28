@@ -254,7 +254,7 @@ useEffect(()=>{
 
   async function stake()
   {
-    alert("Staking is temporary stop");
+    alert("Staking is temporarily stopped");
     return;
     if(props.isVerified=="undefined" || props.isVerified=="decline")
     {
@@ -301,7 +301,7 @@ useEffect(()=>{
 
   function unstaking()
   {
-    alert("Unstaking is temporary stop");
+    alert("Unstaking is temporarily stopped");
     return;
     if(isDisconnected)
     {
