@@ -254,6 +254,8 @@ useEffect(()=>{
 
   async function stake()
   {
+    alert("Staking is temporary stop");
+    return;
     if(props.isVerified=="undefined" || props.isVerified=="decline")
     {
       alert("Only regitered Members are allowed to stake");
@@ -299,6 +301,8 @@ useEffect(()=>{
 
   function unstaking()
   {
+    alert("Unstaking is temporary stop");
+    return;
     if(isDisconnected)
     {
       alert("kindly connect your wallet ");
