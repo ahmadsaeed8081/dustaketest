@@ -75,8 +75,10 @@ const networkId=56;
 
   function withdraw(_amount)
   {
-    alert("Withdrawal is temporary stop");
+    
+    alert("Withdrawal is temporarily stoped");
     return;
+    
     set_withdrawAmount(_amount)
     if(isDisconnected)
     {
